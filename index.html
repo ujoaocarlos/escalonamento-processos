@@ -189,6 +189,22 @@ Conferência: burst médio = 14 / 4 = 3,5 e 7,75 − 3,5 = 4,25.</p>
 <p>Gantt: A 0–2, B 2–4, C 4–6, A 6–8, D 8–10, B 10–11, C 11–13, A 13–14. Términos: A 14, B 11, C 13, D 10.</p>
 <p>TN médio = 42 / 4 = <b>10,5</b>. TE médio = 28 / 4 = <b>7</b>.</p></details>
 
+<h3>Questão 5: SRTF com cinco processos</h3>
+<p>Desempate: o processo em execução continua se houver empate no restante; entre os demais, escolha o que chegou primeiro. Monte o Gantt e calcule término, TN e TE de cada processo.</p>
+<div id="q5"></div>
+<details><summary>Ver resposta</summary>
+<p>Gantt: P1 0–1, P2 1–2, P3 2–4, P4 4–5, P2 5–8, P5 8–11, P1 11–18.</p>
+<div id="r-q5"></div>
+<p>TN médio = 36 / 5 = <b>7,2</b>. TE médio = 18 / 5 = <b>3,6</b>.</p></details>
+
+<h3>Questão 6: Round Robin com cinco processos</h3>
+<p>Use quantum = 2. Quando uma chegada coincide com o fim do quantum, coloque o recém-chegado na fila antes do processo interrompido. Monte o Gantt e calcule término, TN e TE de cada processo.</p>
+<div id="q6"></div>
+<details><summary>Ver resposta</summary>
+<p>Gantt: P1 0–2, P2 2–4, P3 4–6, P1 6–8, P4 8–10, P2 10–12, P5 12–14, P3 14–15, P1 15–16, P5 16–18.</p>
+<div id="r-q6"></div>
+<p>TN médio = 59 / 5 = <b>11,8</b>. TE médio = 41 / 5 = <b>8,2</b>.</p></details>
+
 <footer>Material de estudo feito para a turma. Confira sempre as convenções de desempate e de fila indicadas no enunciado da sua prova.</footer>
 </main>
 <script>
@@ -230,6 +246,10 @@ put('q1',table([['A',0,6],['B',1,2],['C',2,4],['D',5,3]]));
 put('q2',table([['A',0,6],['B',1,8],['C',2,2],['D',3,4]]));
 put('q3',table([['A',0,5],['B',1,2],['C',2,4],['D',3,1]]));
 put('q4',table([['A',0,5],['B',1,3],['C',2,4],['D',3,2]]));
+put('q5',table([['P1',0,8],['P2',1,4],['P3',2,2],['P4',3,1],['P5',4,3]]));
+put('r-q5',results([['P1',18,18,10],['P2',8,7,3],['P3',4,2,0],['P4',5,2,1],['P5',11,7,4]]));
+put('q6',table([['P1',0,5],['P2',1,4],['P3',2,3],['P4',4,2],['P5',5,4]]));
+put('r-q6',results([['P1',16,16,11],['P2',12,11,7],['P3',15,13,10],['P4',10,6,4],['P5',18,13,9]]));
 </script>
 </body>
 </html>
