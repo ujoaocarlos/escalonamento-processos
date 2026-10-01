@@ -168,47 +168,58 @@ Conferência: burst médio = 14 / 4 = 3,5 e 7,75 − 3,5 = 4,25.</p>
 
 <h2 id="treino">Exercícios</h2>
 <p>Resolva no papel: Gantt, término, TN e TE de cada processo e as médias. Depois abra a resposta para conferir.</p>
+<p>No Gantt, leia os blocos da esquerda para a direita: cada bloco mostra quem está usando a CPU e em que horário. TN é o tempo desde a chegada até o fim. Para achar a espera (TE), tire o tempo de CPU do TN. Exemplo: se chegou em 0 e terminou em 6, TN = 6 − 0 = 6.</p>
 
 <h3>Questão 1: FIFO</h3>
 <div id="q1"></div>
-<details><summary>Ver resposta</summary>
-<p>Gantt: A 0–6, B 6–8, C 8–12, D 12–15. Términos: A 6, B 8, C 12, D 15.</p>
-<p>TN médio = 33 / 4 = <b>8,25</b>. TE médio = 18 / 4 = <b>4,5</b>.</p></details>
+<details><summary>Ver resposta passo a passo</summary>
+<p>Primeiro, veja o Gantt. O número no fim do bloco é quando aquele processo terminou.</p>
+<div class="gantt" id="g-q1"></div><div id="r-q1"></div>
+<p><b>Exemplo com A:</b> chegou em 0 e terminou em 6. Então TN = 6 − 0 = 6. A usou a CPU por 6, então TE = 6 − 6 = 0: não ficou esperando.</p>
+<p><b>Médias:</b> some os TN: 6 + 7 + 10 + 10 = 33. Divida por 4 processos: 33 / 4 = <b>8,25</b>. Para a espera: 0 + 5 + 6 + 7 = 18; 18 / 4 = <b>4,5</b>.</p></details>
 
 <h3>Questão 2: SJF sem preempção</h3>
 <div id="q2"></div>
-<details><summary>Ver resposta</summary>
-<p>Gantt: A 0–6, C 6–8, D 8–12, B 12–20. Términos: A 6, B 20, C 8, D 12.</p>
-<p>TN médio = 40 / 4 = <b>10</b>. TE médio = 20 / 4 = <b>5</b>.</p></details>
+<details><summary>Ver resposta passo a passo</summary>
+<p>O Gantt mostra que A termina primeiro, depois C, D e B. Confira os horários na régua:</p>
+<div class="gantt" id="g-q2"></div><div id="r-q2"></div>
+<p><b>Exemplo com B:</b> chegou em 1 e terminou em 20. TN = 20 − 1 = 19. Como precisou de 8 unidades de CPU, TE = 19 − 8 = 11.</p>
+<p><b>Médias:</b> TN: 6 + 19 + 6 + 9 = 40; 40 / 4 = <b>10</b>. TE: 0 + 11 + 4 + 5 = 20; 20 / 4 = <b>5</b>.</p></details>
 
 <h3>Questão 3: SRTF</h3>
 <p>Desempate no restante: o processo que chegou primeiro.</p>
 <div id="q3"></div>
-<details><summary>Ver resposta</summary>
-<p>Gantt: A 0–1, B 1–3, D 3–4, A 4–8, C 8–12. Términos: A 8, B 3, C 12, D 4.</p>
-<p>TN médio = 21 / 4 = <b>5,25</b>. TE médio = 9 / 4 = <b>2,25</b>.</p></details>
+<details><summary>Ver resposta passo a passo</summary>
+<p>A pode aparecer em mais de um bloco porque foi interrompido e voltou depois. O término é o fim do último bloco daquele processo.</p>
+<div class="gantt" id="g-q3"></div><div id="r-q3"></div>
+<p><b>Exemplo com A:</b> chegou em 0 e seu último bloco termina em 8. TN = 8 − 0 = 8. Usou 5 unidades de CPU, então TE = 8 − 5 = 3.</p>
+<p><b>Médias:</b> TN: 8 + 2 + 10 + 1 = 21; 21 / 4 = <b>5,25</b>. TE: 3 + 0 + 6 + 0 = 9; 9 / 4 = <b>2,25</b>.</p></details>
 
 <h3>Questão 4: Round Robin (quantum = 2)</h3>
 <div id="q4"></div>
-<details><summary>Ver resposta</summary>
-<p>Gantt: A 0–2, B 2–4, C 4–6, A 6–8, D 8–10, B 10–11, C 11–13, A 13–14. Términos: A 14, B 11, C 13, D 10.</p>
-<p>TN médio = 42 / 4 = <b>10,5</b>. TE médio = 28 / 4 = <b>7</b>.</p></details>
+<details><summary>Ver resposta passo a passo</summary>
+<p>Cada bloco dura no máximo 2 unidades. Se o processo não terminou, ele volta para o fim da fila.</p>
+<div class="gantt" id="g-q4"></div><div id="r-q4"></div>
+<p><b>Exemplo com A:</b> terminou no fim do último bloco, no tempo 14. Chegou em 0, então TN = 14 − 0 = 14. Usou 5 unidades de CPU; TE = 14 − 5 = 9.</p>
+<p><b>Médias:</b> TN: 14 + 10 + 11 + 7 = 42; 42 / 4 = <b>10,5</b>. TE: 9 + 7 + 7 + 5 = 28; 28 / 4 = <b>7</b>.</p></details>
 
 <h3>Questão 5: SRTF com cinco processos</h3>
 <p>Desempate: o processo em execução continua se houver empate no restante; entre os demais, escolha o que chegou primeiro. Monte o Gantt e calcule término, TN e TE de cada processo.</p>
 <div id="q5"></div>
-<details><summary>Ver resposta</summary>
-<p>Gantt: P1 0–1, P2 1–2, P3 2–4, P4 4–5, P2 5–8, P5 8–11, P1 11–18.</p>
-<div id="r-q5"></div>
-<p>TN médio = 36 / 5 = <b>7,2</b>. TE médio = 18 / 5 = <b>3,6</b>.</p></details>
+<details><summary>Ver resposta passo a passo</summary>
+<p>P1 aparece duas vezes porque foi interrompido. Ele só termina no fim do último bloco.</p>
+<div class="gantt" id="g-q5"></div><div id="r-q5"></div>
+<p><b>Exemplo com P1:</b> chegou em 0 e terminou em 18. TN = 18 − 0 = 18. Precisou de 8 unidades de CPU; TE = 18 − 8 = 10.</p>
+<p><b>Médias:</b> TN: 18 + 7 + 2 + 2 + 7 = 36; 36 / 5 = <b>7,2</b>. TE: 10 + 3 + 0 + 1 + 4 = 18; 18 / 5 = <b>3,6</b>.</p></details>
 
 <h3>Questão 6: Round Robin com cinco processos</h3>
 <p>Use quantum = 2. Quando uma chegada coincide com o fim do quantum, coloque o recém-chegado na fila antes do processo interrompido. Monte o Gantt e calcule término, TN e TE de cada processo.</p>
 <div id="q6"></div>
-<details><summary>Ver resposta</summary>
-<p>Gantt: P1 0–2, P2 2–4, P3 4–6, P1 6–8, P4 8–10, P2 10–12, P5 12–14, P3 14–15, P1 15–16, P5 16–18.</p>
-<div id="r-q6"></div>
-<p>TN médio = 59 / 5 = <b>11,8</b>. TE médio = 41 / 5 = <b>8,2</b>.</p></details>
+<details><summary>Ver resposta passo a passo</summary>
+<p>Em cada rodada, o processo usa a CPU por até 2 unidades. Se ainda precisar de CPU, espera sua próxima vez na fila.</p>
+<div class="gantt" id="g-q6"></div><div id="r-q6"></div>
+<p><b>Exemplo com P1:</b> chegou em 0 e terminou em 16. TN = 16 − 0 = 16. Usou 5 unidades de CPU; TE = 16 − 5 = 11.</p>
+<p><b>Médias:</b> TN: 16 + 11 + 13 + 6 + 13 = 59; 59 / 5 = <b>11,8</b>. TE: 11 + 7 + 10 + 4 + 9 = 41; 41 / 5 = <b>8,2</b>.</p></details>
 
 <footer>Material de estudo feito para a turma. Confira sempre as convenções de desempate e de fila indicadas no enunciado da sua prova.</footer>
 </main>
@@ -255,8 +266,18 @@ put('q2',table([['A',0,6],['B',1,8],['C',2,2],['D',3,4]]));
 put('q3',table([['A',0,5],['B',1,2],['C',2,4],['D',3,1]]));
 put('q4',table([['A',0,5],['B',1,3],['C',2,4],['D',3,2]]));
 put('q5',table([['P1',0,8],['P2',1,4],['P3',2,2],['P4',3,1],['P5',4,3]]));
+put('g-q1',gantt([['A',0,6],['B',6,8],['C',8,12],['D',12,15]]));
+put('r-q1',results([['A',6,6,0],['B',8,7,5],['C',12,10,6],['D',15,10,7]]));
+put('g-q2',gantt([['A',0,6],['C',6,8],['D',8,12],['B',12,20]]));
+put('r-q2',results([['A',6,6,0],['B',20,19,11],['C',8,6,4],['D',12,9,5]]));
+put('g-q3',gantt([['A',0,1],['B',1,3],['D',3,4],['A',4,8],['C',8,12]]));
+put('r-q3',results([['A',8,8,3],['B',3,2,0],['C',12,10,6],['D',4,1,0]]));
+put('g-q4',gantt([['A',0,2],['B',2,4],['C',4,6],['A',6,8],['D',8,10],['B',10,11],['C',11,13],['A',13,14]]));
+put('r-q4',results([['A',14,14,9],['B',11,10,7],['C',13,11,7],['D',10,7,5]]));
+put('g-q5',gantt([['P1',0,1],['P2',1,2],['P3',2,4],['P4',4,5],['P2',5,8],['P5',8,11],['P1',11,18]]));
 put('r-q5',results([['P1',18,18,10],['P2',8,7,3],['P3',4,2,0],['P4',5,2,1],['P5',11,7,4]]));
 put('q6',table([['P1',0,5],['P2',1,4],['P3',2,3],['P4',4,2],['P5',5,4]]));
+put('g-q6',gantt([['P1',0,2],['P2',2,4],['P3',4,6],['P1',6,8],['P4',8,10],['P2',10,12],['P5',12,14],['P3',14,15],['P1',15,16],['P5',16,18]]));
 put('r-q6',results([['P1',16,16,11],['P2',12,11,7],['P3',15,13,10],['P4',10,6,4],['P5',18,13,9]]));
 </script>
 </body>
