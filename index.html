@@ -120,7 +120,30 @@ Conferência: burst médio = 14 / 4 = 3,5 e 7,75 − 3,5 = 4,25.</p>
 <p>Em t = 7 a fila tem B (4), C (1) e D (4). Escolhe-se C, depois B, que chegou antes de D.</p>
 <div class="gantt" id="g-sjf"></div>
 <div id="r-sjf"></div>
-<p>Soma dos TN = 32, TN médio = 32 / 4 = <b>8</b>. Soma dos TE = 16, TE médio = 16 / 4 = <b>4</b>.</p>
+<h3>Como calcular TN e TE neste exemplo</h3>
+<p>Use o Gantt para descobrir quando cada processo termina. Depois, consulte a tabela de chegada e burst acima e faça as contas:</p>
+<div class="rule"><p><b>TN = término − chegada</b></p><p><b>TE = TN − burst</b></p></div>
+<h3>1. Encontre o término no Gantt</h3>
+<p>O término é o número no fim do último bloco do processo. Se ele aparece em mais de um bloco, use o fim do último.</p>
+<ul><li>A termina em <b>7</b>.</li><li>C termina em <b>8</b>.</li><li>B termina em <b>12</b>.</li><li>D termina em <b>16</b>.</li></ul>
+<h3>2. Calcule o TN</h3>
+<p>Para cada processo, faça <b>término menos chegada</b>. Por exemplo, B termina em 12 e chegou em 2: 12 − 2 = 10.</p>
+<div class="wrap"><table class="num"><tr><th>Processo</th><th>Término</th><th>Chegada</th><th>Conta do TN</th></tr>
+<tr><td>A</td><td>7</td><td>0</td><td>7 − 0 = <b>7</b></td></tr>
+<tr><td>B</td><td>12</td><td>2</td><td>12 − 2 = <b>10</b></td></tr>
+<tr><td>C</td><td>8</td><td>4</td><td>8 − 4 = <b>4</b></td></tr>
+<tr><td>D</td><td>16</td><td>5</td><td>16 − 5 = <b>11</b></td></tr></table></div>
+<h3>3. Calcule o TE</h3>
+<p>Agora tire o burst do TN. O burst é quanto tempo o processo precisou usar a CPU. Por exemplo, B tem TN 10 e burst 4: 10 − 4 = 6 de espera.</p>
+<div class="wrap"><table class="num"><tr><th>Processo</th><th>TN</th><th>Burst</th><th>Conta do TE</th></tr>
+<tr><td>A</td><td>7</td><td>7</td><td>7 − 7 = <b>0</b></td></tr>
+<tr><td>B</td><td>10</td><td>4</td><td>10 − 4 = <b>6</b></td></tr>
+<tr><td>C</td><td>4</td><td>1</td><td>4 − 1 = <b>3</b></td></tr>
+<tr><td>D</td><td>11</td><td>4</td><td>11 − 4 = <b>7</b></td></tr></table></div>
+<h3>4. Calcule as médias</h3>
+<p>Some os valores e divida pelo número de processos, que é 4:</p>
+<ul><li>TN: 7 + 10 + 4 + 11 = 32; então TN médio = 32 / 4 = <b>8</b>.</li><li>TE: 0 + 6 + 3 + 7 = 16; então TE médio = 16 / 4 = <b>4</b>.</li></ul>
+<p><b>Em palavras simples:</b> TN é o tempo total desde que o processo chegou até terminar. TE é quanto desse tempo ele ficou esperando, sem usar a CPU. A chega e começa logo, então TE = 0: ela não esperou.</p>
 
 <h2 id="srtf">SJF com preempção (SRTF)</h2>
 <div class="rule">
